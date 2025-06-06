@@ -43,7 +43,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
     auth:{
         user:'jacksonprince590@gmail.com',
         // eslint-disable-next-line no-undef
-        pass: process.env.VITE_GMAIL_PASSKEY
+        pass: process.env.GMAIL_PASSKEY
     }
 })
 
@@ -57,7 +57,7 @@ ApplicationEmail.verify((error)=>{
 
 
 //riders route
-router.post('/riders', (req, res)=>{
+router.post('/api/riders', (req, res)=>{
 
         const Data =  req.body;
         const result = RiderFormSchema.parse(Data);
@@ -115,7 +115,7 @@ router.post('/riders', (req, res)=>{
 
 //recruit route
 
-router.post('/jointeam', (req, res)=>{
+router.post('/api/jointeam', (req, res)=>{
 
 
         const Data2 =  req.body;
