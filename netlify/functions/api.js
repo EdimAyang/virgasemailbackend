@@ -43,8 +43,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
     auth:{
         user:'jacksonprince590@gmail.com',
         // eslint-disable-next-line no-undef
-        // pass: process.env.GMAIL_PASSKEY
-        pass: 'wjzz gosg phnq txjo'
+        pass: process.env.GMAIL_PASSKEY
+        // pass: 'wjzz gosg phnq txjo'
     }
 })
 
@@ -58,7 +58,7 @@ ApplicationEmail.verify((error)=>{
 
 
 //riders route
-router.post('/riders', (req, res)=>{
+router.post('/virgasemailapi.netlify.app/.netlify/functions/api/riders', (req, res)=>{
 
         const Data =  req.body;
         const result = RiderFormSchema.parse(Data);
@@ -116,7 +116,7 @@ router.post('/riders', (req, res)=>{
 
 //recruit route
 
-router.post('/api/jointeam', (req, res)=>{
+router.post('/jointeam', (req, res)=>{
 
 
         const Data2 =  req.body;
@@ -176,11 +176,7 @@ router.post('/api/jointeam', (req, res)=>{
                 }
             })
 
-
-   
-
     //Recruit Email logic here...
-
     
 })
 
