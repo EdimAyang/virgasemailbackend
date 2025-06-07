@@ -58,7 +58,7 @@ ApplicationEmail.verify((error)=>{
 
 
 //riders route
-router.post('/riders', (req, res)=>{
+router.post('/api/riders', (req, res)=>{
 
         const Data =  req.body;
         const result = RiderFormSchema.parse(Data);
