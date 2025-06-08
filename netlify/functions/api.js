@@ -47,7 +47,7 @@ const RiderFormSchema = z.object({
 
 
 //riders route
-router.post('/riders', (req, res)=>{
+router.get('/riders', (req, res)=>{
     const Data = req.body
     const result = RiderFormSchema.parse(Data)
     const {fname, email, gender, lname, phone, DOB,} = result
@@ -97,7 +97,7 @@ router.post('/riders', (req, res)=>{
                 return res.json({status: `200`})
             }
         })
-
+      return  res.json("hello")
 })
 
 //recruit route
