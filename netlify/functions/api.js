@@ -43,8 +43,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
     auth:{
         user:'jacksonprince590@gmail.com',
         // eslint-disable-next-line no-undef
-        pass: process.env.GMAIL_PASSKEY
-        // pass: 'wjzz gosg phnq txjo'
+        // pass: process.env.GMAIL_PASSKEY
+        pass: 'wjzz gosg phnq txjo'
     }
 })
 
@@ -56,7 +56,7 @@ ApplicationEmail.verify((error)=>{
     }
 })
 
-router.get('/hello', (req, res) =>{return  res.json({status: 'Working'})})
+router.get('/hello', (req, res) =>{return  res.json({status: 'Working for get request'})})
 
 //riders route
 router.post('/riders', (req, res)=>{
