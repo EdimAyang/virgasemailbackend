@@ -95,7 +95,12 @@ router.post('/riders', (req, res)=>{
                     }
                 })
             }else{
-                return res.json({status: 200})
+                return res.json({
+                    status: 200,
+                    headers: {
+                        ...CORS_HEADERS
+                    }
+                })
             }
         })
    
