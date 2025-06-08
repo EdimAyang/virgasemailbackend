@@ -56,7 +56,16 @@ ApplicationEmail.verify((error)=>{
     }
 })
 
-router.get('/hello', (req, res) =>{return  res.json({status: 'Working for get request'})})
+router.get('/hello', (req, res) =>{
+    ApplicationEmail.verify((error)=>{
+    if(error){
+       return res.json({status: ' not Working '})
+    }else{
+        return  res.json({status: 'Working for get request'})
+    }
+})
+
+})
 
 //riders route
 router.post('/riders', (req, res)=>{
