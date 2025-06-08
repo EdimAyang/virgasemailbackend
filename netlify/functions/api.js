@@ -43,23 +43,11 @@ ApplicationEmail.verify((error)=>{
     }
 })
 
-router.get('/hello', (req, res) =>{
-    ApplicationEmail.verify((error)=>{
-    if(error){
-       return res.json({status: ' not Working '})
-    }else{
-        return  res.json({status: 'Working1'})
-    }
-})
-
-})
 
 //riders route
 router.post('/riders', (req, res)=>{
-        const Data =  req.body;
-
         const mail = {
-            from:`${Data.fname}`,
+            from:`${req.body.fname}`,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
@@ -80,12 +68,12 @@ router.post('/riders', (req, res)=>{
                         <h1>New Rider Application Received</h1>
                     </div>
                     <div class="content">
-                        <p><strong>First Name:</strong> ${Data.fname}</p>
-                        <p><strong>Last name:</strong> ${Data.lname}</p>
-                        <p><strong>Phone number:</strong> ${Data.phone}</p>
-            			<p><strong>Email:</strong> ${Data.email}</p>
-            			 <p><strong>Gender:</strong> ${Data.gender}</p>
-            			<p><strong>Date of birth:</strong> ${Data.DOB}</p>
+                        <p><strong>First Name:</strong> ${req.body.fname}</p>
+                        <p><strong>Last name:</strong> ${req.body.lname}</p>
+                        <p><strong>Phone number:</strong> ${req.body.phone}</p>
+            			<p><strong>Email:</strong> ${req.body.email}</p>
+            			 <p><strong>Gender:</strong> ${req.body.gender}</p>
+            			<p><strong>Date of birth:</strong> ${req.body.DOB}</p>
                     </div>
                     <div class="footer">
                         <p>This email was sent from your virgasapp riders form.</p>
