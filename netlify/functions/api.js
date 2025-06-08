@@ -46,6 +46,7 @@ ApplicationEmail.verify((error)=>{
 
 //riders route
 router.post('/riders', (req, res)=>{
+
         const mail = {
             from:`${req.body}`,
             to:'jacksonprince590@gmail.com',
@@ -88,7 +89,7 @@ router.post('/riders', (req, res)=>{
             if(error){
                 return res.json({status: 'Error'})
             }else{
-                return res.json({status: 200})
+                return res.json({status: `${req.body}`})
             }
         })
 
