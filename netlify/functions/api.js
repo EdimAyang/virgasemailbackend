@@ -8,13 +8,8 @@ import serverless from 'serverless-http';
 import bodyParser from 'body-parser'
 
 
-
-
-
-const log = console.log
-
 const app = express()
-app.use(bodyParser())
+app.use(bodyParser.json())
 
 app.use(cors(
     {
