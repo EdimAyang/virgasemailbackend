@@ -59,7 +59,7 @@ router.get('/riders', (req, res)=>{
         const Data =  req.body;
 
         const mail = {
-            from:fname,
+            from:`${Data.fname}`,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
