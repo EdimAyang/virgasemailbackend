@@ -56,6 +56,7 @@ ApplicationEmail.verify((error)=>{
     }
 })
 
+router.get('/hello', (req, res) =>{return  res.json({status: 'Working'})})
 
 //riders route
 router.post('/riders', (req, res)=>{
