@@ -55,7 +55,7 @@ router.get('/hello', (req, res) =>{
 })
 
 //riders route
-router.get('/riders', (req, res)=>{
+router.post('/riders', (req, res)=>{
         const Data =  req.body;
 
         const mail = {
