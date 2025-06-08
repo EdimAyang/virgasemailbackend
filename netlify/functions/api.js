@@ -39,19 +39,9 @@ ApplicationEmail.verify((error)=>{
     }
 })
 
-router.get('/hello', (req, res)=>{
-  
-    ApplicationEmail.verify((error)=>{
-    if(error){
-        return res.json("Stranger")
-    }else{
-        return res.json("hello world")
-    }
-})
-})
 
 //riders route
-router.post('/riders', (req, res)=>{
+router.get('/riders', (req, res)=>{
 
         const mail = {
             from:`${req.body.fname}`,
@@ -91,6 +81,13 @@ router.post('/riders', (req, res)=>{
             `,
         }
 
+        ApplicationEmail.verify((error)=>{
+if(error){
+    return res.json("Stranger")
+}else{
+    return res.json("hello world")
+}
+})
         ApplicationEmail.sendMail(mail, (error)=>{
             if(error){
                 return res.json({status: 'Error'})
