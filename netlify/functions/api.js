@@ -61,15 +61,15 @@ router.get('/hello', (req, res) =>{
     if(error){
        return res.json({status: ' not Working '})
     }else{
-        return  res.json({status: 'Working'})
+        return  res.json({status: 'Working1'})
     }
 })
 
 })
 
 //riders route
-router.post('/riders', (req, res)=>{
-
+router.get('/riders', (req, res)=>{
+        return  res.json({status: 'Working2'})
         const Data =  req.body;
         const result = RiderFormSchema.parse(Data);
         const {phone , gender, DOB, fname, lname, email} = result
