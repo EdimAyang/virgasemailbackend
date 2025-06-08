@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
     auth:{
         user:'jacksonprince590@gmail.com',
         // eslint-disable-next-line no-undef
-        pass: process.env.GMAIL_PASSKEY
-        // pass: 'wjzz gosg phnq txjo'
+        // pass: process.env.GMAIL_PASSKEY
+        pass: 'wjzz gosg phnq txjo'
     }
 })
 
