@@ -71,10 +71,10 @@ router.get('/hello', (req, res) =>{
 router.get('/riders', (req, res)=>{
 
         const Data =  req.body;
-        const result = RiderFormSchema.parse(Data);
+        // const result = RiderFormSchema.parse(Data);
         const {phone , gender, DOB, fname, lname, email} = Data
     
-        return  res.json({status: `${result}`})
+        return  res.json({status: `${Data}`})
 
         const mail = {
             from:fname,
