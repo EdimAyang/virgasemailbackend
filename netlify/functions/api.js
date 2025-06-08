@@ -41,7 +41,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 
 //riders route
-router.get('/riders', (req, res)=>{
+router.post('/riders', (req, res)=>{
 
 
         const mail = {
@@ -89,8 +89,6 @@ router.get('/riders', (req, res)=>{
                 return res.json({status: `200`})
             }
         })
-
-        return res.json("hello world")
 
 })
 
