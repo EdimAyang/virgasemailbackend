@@ -1,16 +1,25 @@
 // @ts-nocheck
 import express from 'express'
 import nodemailer from 'nodemailer'
+import cors from 'cors'
 const router = express.Router()
 import 'dotenv/config'
 import serverless from 'serverless-http';
-import cors from 'cors'
 
+
+
+
+
+
+const log = console.log
 
 const app = express()
 
-app.use(cors({origin: '*'}))
-
+app.use(cors(
+    {
+        origin:'*'
+    }
+))
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -21,8 +30,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
     auth:{
         user:'jacksonprince590@gmail.com',
         // eslint-disable-next-line no-undef
-        // pass: process.env.GMAIL_PASSKEY
-        pass: 'wjzz gosg phnq txjo'
+        pass: process.env.GMAIL_PASSKEY
+        // pass: 'wjzz gosg phnq txjo'
     }
 })
 
@@ -34,10 +43,21 @@ ApplicationEmail.verify((error)=>{
     }
 })
 
+router.get('/hello', (req, res) =>{
+    ApplicationEmail.verify((error)=>{
+    if(error){
+       return res.json({status: ' not Working '})
+    }else{
+        return  res.json({status: 'Working1'})
+    }
+})
+
+})
 
 //riders route
 router.post('/riders', (req, res)=>{
-     
+
+        const Data =  req.body;
 
         const mail = {
             from:fname,
@@ -61,12 +81,12 @@ router.post('/riders', (req, res)=>{
                         <h1>New Rider Application Received</h1>
                     </div>
                     <div class="content">
-                        <p><strong>First Name:</strong> ${req.body.fname}</p>
-                        <p><strong>Last name:</strong> ${req.body.lname}</p>
-                        <p><strong>Phone number:</strong> ${req.body.phone}</p>
-            			<p><strong>Email:</strong> ${req.body.email}</p>
-            			 <p><strong>Gender:</strong> ${req.body.gender}</p>
-            			<p><strong>Date of birth:</strong> ${req.body.DOB}</p>
+                        <p><strong>First Name:</strong> ${Data.fname}</p>
+                        <p><strong>Last name:</strong> ${Data.lname}</p>
+                        <p><strong>Phone number:</strong> ${Data.phone}</p>
+            			<p><strong>Email:</strong> ${Data.email}</p>
+            			 <p><strong>Gender:</strong> ${Data.gender}</p>
+            			<p><strong>Date of birth:</strong> ${Data.DOB}</p>
                     </div>
                     <div class="footer">
                         <p>This email was sent from your virgasapp riders form.</p>
@@ -79,13 +99,9 @@ router.post('/riders', (req, res)=>{
 
         ApplicationEmail.sendMail(mail, (error)=>{
             if(error){
-                return res.json({
-                    status: 'Error',
-                })
+                return res.json({status: 'Error'})
             }else{
-                return res.json({
-                    status: 200,
-                })
+                return res.json({status: 200})
             }
         })
    
@@ -95,7 +111,11 @@ router.post('/riders', (req, res)=>{
 //recruit route
 
 router.post('/jointeam', (req, res)=>{
-        const Data =  req.body;
+
+
+        const Data2 =  req.body;
+        const result = RecruitFormSchema.parse(Data2)
+        const {role, message, projects, motivation ,cv} = result
 
                 
             const mail = {
@@ -120,10 +140,10 @@ router.post('/jointeam', (req, res)=>{
                             <h1>New Recruit Application Received</h1>
                         </div>
                         <div class="content">
-                            <p><strong>Role:</strong> ${Data.role}</p>
+                            <p><strong>Role:</strong> ${role}</p>
                             <p><strong>motivation:</strong> ${motivation}</p>
-                            <p><strong>projects:</strong> ${Data.projects}</p>
-                			<p><strong>message:</strong> ${Data.message}</p>
+                            <p><strong>projects:</strong> ${projects}</p>
+                			<p><strong>message:</strong> ${message}</p>
                         </div>
                         <div class="footer">
                             <p>This email was sent from your virgasapp recruit form.</p>
@@ -136,7 +156,7 @@ router.post('/jointeam', (req, res)=>{
                 attachments: [
 	                {
 	                	filename:'Resume.pdf',
-	                	path: `${Data.cv}`,
+	                	path: cv,
                         encoding: "base64",
 	                },
                 ],
@@ -156,3 +176,5 @@ router.post('/jointeam', (req, res)=>{
 
 app.use('/.netlify/functions/api/', router)
 module.exports.handler = serverless(app);
+
+// app.listen(3000, ()=>{log('server running')})
