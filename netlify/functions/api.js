@@ -9,12 +9,8 @@ import cors from 'cors'
 
 const app = express()
 
-app.use(cors())
+app.use(cors({origin: '*'}))
 
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-};
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -85,16 +81,10 @@ router.post('/riders', (req, res)=>{
             if(error){
                 return res.json({
                     status: 'Error',
-                    headers: {
-                        ...CORS_HEADERS
-                    }
                 })
             }else{
                 return res.json({
                     status: 200,
-                    headers: {
-                        ...CORS_HEADERS
-                    }
                 })
             }
         })
