@@ -61,7 +61,7 @@ router.get('/hello', (req, res) =>{
     if(error){
        return res.json({status: ' not Working '})
     }else{
-        return  res.json({status: 'Working for get request'})
+        return  res.json({status: 'Working'})
     }
 })
 
