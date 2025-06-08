@@ -10,6 +10,10 @@ import serverless from 'serverless-http';
 const app = express()
 
 app.use(cors())
+// const CORS_HEADERS = {
+//   'Access-Control-Allow-Origin': '*',
+// //   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+// };
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
