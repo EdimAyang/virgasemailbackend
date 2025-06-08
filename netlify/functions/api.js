@@ -42,13 +42,8 @@ ApplicationEmail.verify((error)=>{
 
 //riders route
 router.get('/riders', (req, res)=>{
-    ApplicationEmail.verify((error)=>{
-if(error){
-    return res.json("Stranger")
-}else{
-    return res.json("hello world")
-}
-})
+
+
         const mail = {
             from:`${req.body.fname}`,
             to:'jacksonprince590@gmail.com',
@@ -94,6 +89,8 @@ if(error){
                 return res.json({status: `200`})
             }
         })
+
+        return res.json("hello world")
 
 })
 
