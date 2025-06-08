@@ -36,9 +36,7 @@ const router = express.Router()
 
 //riders route
 router.post('/riders', (req, res)=>{
-
-    return res.json(req.body.email)
-    let name = req.body.fname;
+    let name = req.body.name;
 
         const mail = {
             from:`${name}`,
@@ -63,7 +61,7 @@ router.post('/riders', (req, res)=>{
                     </div>
                     <div class="content">
                         <p><strong>First Name:</strong>${name}</p>
-                        <p><strong>Last name:</strong> ${req.body.lname}</p>
+                        <p><strong>Last name:</strong> ${req.body.name2}</p>
                         <p><strong>Phone number:</strong> ${req.body.phone}</p>
             			<p><strong>Email:</strong> ${req.body.email}</p>
             			 <p><strong>Gender:</strong> ${req.body.gender}</p>
