@@ -103,8 +103,6 @@ router.post('/riders', (req, res)=>{
                 return res.json({status: 200})
             }
         })
-   
-  return res.json({status: ' not Working '})
 
 })
 
