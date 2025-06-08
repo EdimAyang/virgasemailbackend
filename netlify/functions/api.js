@@ -4,13 +4,13 @@ import nodemailer from 'nodemailer'
 import cors from 'cors'
 import 'dotenv/config'
 import serverless from 'serverless-http';
-import bodyParser from 'body-parser'
+// import bodyParser from 'body-parser'
 
 
 const app = express()
-// app.use(express.json({ limit: '10mb' }))
-// app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.use(bodyParser.json())
+app.use(express.json({ limit: '10mb' }))
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+// app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }))
 app.use(cors({origin:'*'}))
 const router = express.Router()
@@ -39,7 +39,7 @@ router.post('/riders', (req, res)=>{
     let name = req.body.name;
 
         const mail = {
-            from:`${name}`,
+            from:name,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
