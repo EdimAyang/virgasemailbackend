@@ -55,8 +55,7 @@ router.get('/hello', (req, res) =>{
 })
 
 //riders route
-router.post('/riders', (req, res)=>{
-
+router.get('/riders', (req, res)=>{
         const Data =  req.body;
 
         const mail = {
@@ -105,7 +104,8 @@ router.post('/riders', (req, res)=>{
             }
         })
    
- 
+  return res.json({status: ' not Working '})
+
 })
 
 //recruit route
