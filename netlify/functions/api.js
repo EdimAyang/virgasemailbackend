@@ -1,7 +1,6 @@
 // @ts-nocheck
 import express from 'express'
 import nodemailer from 'nodemailer'
-import cors from 'cors'
 const router = express.Router()
 import 'dotenv/config'
 import serverless from 'serverless-http';
@@ -9,7 +8,8 @@ import serverless from 'serverless-http';
 
 const app = express()
 
-app.use(cors())
+// app.use(cors())
+
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
@@ -46,7 +46,7 @@ router.post('/riders', (req, res)=>{
           headers: CORS_HEADERS,
         };
     }
-        const Data =  req.body;
+     
 
         const mail = {
             from:fname,
@@ -70,12 +70,12 @@ router.post('/riders', (req, res)=>{
                         <h1>New Rider Application Received</h1>
                     </div>
                     <div class="content">
-                        <p><strong>First Name:</strong> ${Data.fname}</p>
-                        <p><strong>Last name:</strong> ${Data.lname}</p>
-                        <p><strong>Phone number:</strong> ${Data.phone}</p>
-            			<p><strong>Email:</strong> ${Data.email}</p>
-            			 <p><strong>Gender:</strong> ${Data.gender}</p>
-            			<p><strong>Date of birth:</strong> ${Data.DOB}</p>
+                        <p><strong>First Name:</strong> ${req.body.fname}</p>
+                        <p><strong>Last name:</strong> ${req.body.lname}</p>
+                        <p><strong>Phone number:</strong> ${req.body.phone}</p>
+            			<p><strong>Email:</strong> ${req.body.email}</p>
+            			 <p><strong>Gender:</strong> ${req.body.gender}</p>
+            			<p><strong>Date of birth:</strong> ${req.body.DOB}</p>
                     </div>
                     <div class="footer">
                         <p>This email was sent from your virgasapp riders form.</p>
