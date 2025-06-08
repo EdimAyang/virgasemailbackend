@@ -47,7 +47,7 @@ ApplicationEmail.verify((error)=>{
 //riders route
 router.post('/riders', (req, res)=>{
         const mail = {
-            from:`${req.body.fname}`,
+            from:`${req.body}`,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
