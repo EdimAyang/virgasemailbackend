@@ -72,7 +72,7 @@ router.get('/riders', (req, res)=>{
 
         const Data =  req.body;
         const result = RiderFormSchema.parse(Data);
-        const {phone , gender, DOB, fname, lname, email} = result
+        const {phone , gender, DOB, fname, lname, email} = Data
     
         return  res.json({status: `${result}`})
 
