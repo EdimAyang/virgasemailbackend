@@ -58,7 +58,7 @@ ApplicationEmail.verify((error)=>{
 
 
 //riders route
-router.post('/virgasemailapi.netlify.app/.netlify/functions/api/riders', (req, res)=>{
+router.post('/riders', (req, res)=>{
 
         const Data =  req.body;
         const result = RiderFormSchema.parse(Data);
@@ -180,7 +180,7 @@ router.post('/jointeam', (req, res)=>{
     
 })
 
-app.use('/api/', router)
-export const handler = serverless(app);
+app.use('/.netlify/functions/api/', router)
+module.exports.handler = serverless(app);
 
 // app.listen(3000, ()=>{log('server running')})
