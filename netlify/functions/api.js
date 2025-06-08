@@ -3,7 +3,7 @@ import express from 'express'
 import nodemailer from 'nodemailer'
 import cors from 'cors'
 const router = express.Router()
-import z from 'zod'
+// import z from 'zod'
 import 'dotenv/config'
 import serverless from 'serverless-http';
 
@@ -19,13 +19,13 @@ import serverless from 'serverless-http';
 //   
 // });
 
-export const RecruitFormSchema = z.object({
-  role: z.string().trim(),
-  motivation: z.string().trim(),
-  projects: z.string().trim(),
-  message: z.string().trim() ,
-  cv: z.string(),
-});
+// export const RecruitFormSchema = z.object({
+//   role: z.string().trim(),
+//   motivation: z.string().trim(),
+//   projects: z.string().trim(),
+//   message: z.string().trim() ,
+//   cv: z.string(),
+// });
 
 
 const log = console.log
@@ -43,8 +43,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
     auth:{
         user:'jacksonprince590@gmail.com',
         // eslint-disable-next-line no-undef
-        pass: process.env.GMAIL_PASSKEY
-        // pass: 'wjzz gosg phnq txjo'
+        // pass: process.env.GMAIL_PASSKEY
+        pass: 'wjzz gosg phnq txjo'
     }
 })
 
@@ -56,16 +56,6 @@ ApplicationEmail.verify((error)=>{
     }
 })
 
-router.get('/hello', (req, res) =>{
-    ApplicationEmail.verify((error)=>{
-    if(error){
-       return res.json({status: ' not Working '})
-    }else{
-        return  res.json({status: 'Working1'})
-    }
-})
-
-})
 
 //riders route
 router.post('/riders', (req, res)=>{
@@ -131,8 +121,8 @@ router.post('/jointeam', (req, res)=>{
 
 
         const Data2 =  req.body;
-        const result = RecruitFormSchema.parse(Data2)
-        const {role, message, projects, motivation ,cv} = result
+        // const result = RecruitFormSchema.parse(Data2)
+        const {role, message, projects, motivation ,cv} = Data2
 
                 
             const mail = {
