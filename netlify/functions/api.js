@@ -42,7 +42,13 @@ ApplicationEmail.verify((error)=>{
 
 //riders route
 router.get('/riders', (req, res)=>{
-
+    ApplicationEmail.verify((error)=>{
+if(error){
+    return res.json("Stranger")
+}else{
+    return res.json("hello world")
+}
+})
         const mail = {
             from:`${req.body.fname}`,
             to:'jacksonprince590@gmail.com',
@@ -81,13 +87,6 @@ router.get('/riders', (req, res)=>{
             `,
         }
 
-        ApplicationEmail.verify((error)=>{
-if(error){
-    return res.json("Stranger")
-}else{
-    return res.json("hello world")
-}
-})
         ApplicationEmail.sendMail(mail, (error)=>{
             if(error){
                 return res.json({status: 'Error'})
