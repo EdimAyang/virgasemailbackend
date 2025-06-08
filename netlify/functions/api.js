@@ -4,11 +4,12 @@ import nodemailer from 'nodemailer'
 const router = express.Router()
 import 'dotenv/config'
 import serverless from 'serverless-http';
+import cors from 'cors'
 
 
 const app = express()
 
-// app.use(cors())
+app.use(cors())
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
@@ -40,12 +41,6 @@ ApplicationEmail.verify((error)=>{
 
 //riders route
 router.post('/riders', (req, res)=>{
-     if (req.method === 'OPTIONS') {
-        return {
-          statusCode: 200,
-          headers: CORS_HEADERS,
-        };
-    }
      
 
         const mail = {
