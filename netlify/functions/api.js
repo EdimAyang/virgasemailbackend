@@ -81,7 +81,7 @@ router.post('/riders', paser , (req, res)=>{
             if(error){
                 return res.json({status: 'Error'})
             }else{
-                return res.json({status: `200`})
+                return res.json({status: `200 ${req.body}`})
             }
         })
         // return res.json("hello")
