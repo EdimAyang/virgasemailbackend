@@ -5,11 +5,11 @@ import cors from 'cors'
 const router = express.Router()
 import 'dotenv/config'
 import serverless from 'serverless-http';
-import bodyParser from 'body-parser'
+// import bodyParser from 'body-parser'
 
 
 const app = express()
-app.use(bodyParser.json({ limit: '10mb' }))
+app.use(express.json({ limit: '10mb' }))
 
 app.use(cors(
     {
