@@ -9,15 +9,15 @@ import serverless from 'serverless-http';
 
 
 
-export const RiderFormSchema = z.object({
-  email: z.string().trim().optional(),
-  phone: z.string().trim(),
-  gender: z.string().trim().min(2, 'Please enter your gender'),
-  DOB: z.string().min(2, 'Please enter your Date of birth') ,
-  fname: z.string().trim().min(2, 'Please enter first name'),
-  lname: z.string().trim().min(2, 'Please enter Last name'),
-  
-});
+// export const RiderFormSchema = z.object({
+//   email: z.string().trim().optional(),
+//   phone: z.string().trim(),
+//   gender: z.string().trim().min(2, 'Please enter your gender'),
+//   DOB: z.string().min(2, 'Please enter your Date of birth') ,
+//   fname: z.string().trim().min(2, 'Please enter first name'),
+//   lname: z.string().trim().min(2, 'Please enter Last name'),
+//   
+// });
 
 export const RecruitFormSchema = z.object({
   role: z.string().trim(),
@@ -43,8 +43,8 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
     auth:{
         user:'jacksonprince590@gmail.com',
         // eslint-disable-next-line no-undef
-        // pass: process.env.GMAIL_PASSKEY
-        pass: 'wjzz gosg phnq txjo'
+        pass: process.env.GMAIL_PASSKEY
+        // pass: 'wjzz gosg phnq txjo'
     }
 })
 
@@ -68,13 +68,13 @@ router.get('/hello', (req, res) =>{
 })
 
 //riders route
-router.get('/riders', (req, res)=>{
+router.post('/riders', (req, res)=>{
 
         const Data =  req.body;
         // const result = RiderFormSchema.parse(Data);
         const {phone , gender, DOB, fname, lname, email} = Data
     
-        return  res.json({status: `${Data}`})
+        // return  res.json({status: `${Data}`})
 
         const mail = {
             from:fname,
