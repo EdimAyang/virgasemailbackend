@@ -5,7 +5,7 @@ import cors from 'cors'
 const router = express.Router()
 import 'dotenv/config'
 import serverless from 'serverless-http';
-
+import bodyParser from 'body-parser'
 
 
 
@@ -14,6 +14,7 @@ import serverless from 'serverless-http';
 const log = console.log
 
 const app = express()
+app.use(bodyParser())
 
 app.use(cors(
     {
@@ -31,7 +32,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
         user:'jacksonprince590@gmail.com',
         // eslint-disable-next-line no-undef
         pass: process.env.GMAIL_PASSKEY
-        // pass: 'wjzz gosg phnq txjo'
+       
     }
 })
 
@@ -48,7 +49,7 @@ ApplicationEmail.verify((error)=>{
 router.post('/riders', (req, res)=>{
 
         const mail = {
-            from:`${req.body}`,
+            from:`${req.body.fname}`,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
@@ -69,7 +70,7 @@ router.post('/riders', (req, res)=>{
                         <h1>New Rider Application Received</h1>
                     </div>
                     <div class="content">
-                        <p><strong>First Name:</strong> ${req.body.fname}</p>
+                        <p><strong>First Name:</strong>${req.body.fname}</p>
                         <p><strong>Last name:</strong> ${req.body.lname}</p>
                         <p><strong>Phone number:</strong> ${req.body.phone}</p>
             			<p><strong>Email:</strong> ${req.body.email}</p>
@@ -89,7 +90,7 @@ router.post('/riders', (req, res)=>{
             if(error){
                 return res.json({status: 'Error'})
             }else{
-                return res.json({status: `${req.body}`})
+                return res.json({status: `200`})
             }
         })
 
