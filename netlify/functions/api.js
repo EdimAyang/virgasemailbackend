@@ -5,11 +5,11 @@ import cors from 'cors'
 const router = express.Router()
 import 'dotenv/config'
 import serverless from 'serverless-http';
-// import bodyParser from 'body-parser'
-// import z from 'zod'
+import bodyParser from 'body-parser'
+
 
 const app = express()
-// app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '10mb' }))
 
 app.use(cors(
     {
@@ -17,16 +17,7 @@ app.use(cors(
     }
 ))
 
-// const RiderFormSchema = z.object({
-//   email: z.string(),
-//   phone: z.string(),
-//   gender: z.string().trim().min(2, 'Please enter your gender'),
-//   DOB: z.string().min(2, 'Please enter your Date of birth') ,
-//   fname: z.string().trim().min(2, 'Please enter first name'),
-//   lname: z.string().trim().min(2, 'Please enter Last name'),
-// });
-
-app.use(express.json({ limit: '10mb' }));
+// app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 
@@ -51,15 +42,9 @@ ApplicationEmail.verify((error)=>{
 
 //riders route
 router.post('/riders', (req, res)=>{
-    const fname = req.body.fname;
-    const lname = req.body.lname;
-    const email = req.body.email;
-    const DOB = req.body.DOB;
-    const gender = req.body.gender;
-    const phone = req.body.phone;
 
         const mail = {
-            from:`${fname}`,
+            from:`${req.body.fname}`,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
@@ -80,12 +65,12 @@ router.post('/riders', (req, res)=>{
                         <h1>New Rider Application Received</h1>
                     </div>
                     <div class="content">
-                        <p><strong>First Name:</strong>${fname}</p>
-                        <p><strong>Last name:</strong> ${lname}</p>
-                        <p><strong>Phone number:</strong> ${phone}</p>
-            			<p><strong>Email:</strong> ${email}</p>
-            			 <p><strong>Gender:</strong> ${gender}</p>
-            			<p><strong>Date of birth:</strong> ${DOB}</p>
+                        <p><strong>First Name:</strong>${req.body.fname}</p>
+                        <p><strong>Last name:</strong> ${req.body.lname}</p>
+                        <p><strong>Phone number:</strong> ${req.body.phone}</p>
+            			<p><strong>Email:</strong> ${req.body.email}</p>
+            			 <p><strong>Gender:</strong> ${req.body.gender}</p>
+            			<p><strong>Date of birth:</strong> ${req.body.DOB}</p>
                     </div>
                     <div class="footer">
                         <p>This email was sent from your virgasapp riders form.</p>
