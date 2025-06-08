@@ -36,7 +36,7 @@ app.use(cors({origin:'*'}))
 
 
 //riders route
-router.get('/riders', (req, res)=>{
+router.post('/riders', (req, res)=>{
 
 
         const mail = {
@@ -84,7 +84,7 @@ router.get('/riders', (req, res)=>{
                 return res.json({status: `200`})
             }
         })
-        return res.json("hello")
+        // return res.json("hello")
 })
 
 //recruit route
