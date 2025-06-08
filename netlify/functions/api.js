@@ -38,9 +38,10 @@ app.use(cors({origin:'*'}))
 //riders route
 router.post('/riders', (req, res)=>{
 
+    let name = req.body.fname;
 
         const mail = {
-            from:`${req.body.fname}`,
+            from:`${name}`,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
