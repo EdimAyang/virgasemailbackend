@@ -51,8 +51,12 @@ ApplicationEmail.verify((error)=>{
 
 //riders route
 router.post('/riders', (req, res)=>{
-        const Data = RiderFormSchema.parse(req.body)
-        const {fname, email, phone, gender, lname, DOB} = Data
+    const fname = req.body.fname;
+    const lname = req.body.lname;
+    const email = req.body.email;
+    const DOB = req.body.DOB;
+    const gender = req.body.gender;
+    const phone = req.body.phone;
 
         const mail = {
             from:`${fname}`,
