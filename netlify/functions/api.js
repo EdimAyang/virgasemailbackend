@@ -6,7 +6,7 @@ const router = express.Router()
 import 'dotenv/config'
 import serverless from 'serverless-http';
 // import bodyParser from 'body-parser'
-import z from 'zod'
+// import z from 'zod'
 
 const app = express()
 // app.use(bodyParser.json())
@@ -17,14 +17,14 @@ app.use(cors(
     }
 ))
 
-const RiderFormSchema = z.object({
-  email: z.string(),
-  phone: z.string(),
-  gender: z.string().trim().min(2, 'Please enter your gender'),
-  DOB: z.string().min(2, 'Please enter your Date of birth') ,
-  fname: z.string().trim().min(2, 'Please enter first name'),
-  lname: z.string().trim().min(2, 'Please enter Last name'),
-});
+// const RiderFormSchema = z.object({
+//   email: z.string(),
+//   phone: z.string(),
+//   gender: z.string().trim().min(2, 'Please enter your gender'),
+//   DOB: z.string().min(2, 'Please enter your Date of birth') ,
+//   fname: z.string().trim().min(2, 'Please enter first name'),
+//   lname: z.string().trim().min(2, 'Please enter Last name'),
+// });
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
