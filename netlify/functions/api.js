@@ -2,7 +2,6 @@
 import express from 'express'
 import nodemailer from 'nodemailer'
 import cors from 'cors'
-const router = express.Router()
 import 'dotenv/config'
 import serverless from 'serverless-http';
 import bodyParser from 'body-parser'
@@ -11,10 +10,10 @@ import bodyParser from 'body-parser'
 const app = express()
 app.use(express.json({ limit: '10mb' }))
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
-app.use(bodyParser.json({ limit: '10mb' }))
+const paser = bodyParser.json()
 app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }))
 app.use(cors({origin:'*'}))
-
+const router = express.Router()
 
  const ApplicationEmail = nodemailer.createTransport({
     service: 'gmail',
@@ -36,7 +35,7 @@ app.use(cors({origin:'*'}))
 
 
 //riders route
-router.post('/riders', (req, res)=>{
+router.post('/riders', paser , (req, res)=>{
 
     let name = req.body.fname;
 
@@ -62,7 +61,7 @@ router.post('/riders', (req, res)=>{
                         <h1>New Rider Application Received</h1>
                     </div>
                     <div class="content">
-                        <p><strong>First Name:</strong>${req.body.fname}</p>
+                        <p><strong>First Name:</strong>${name}</p>
                         <p><strong>Last name:</strong> ${req.body.lname}</p>
                         <p><strong>Phone number:</strong> ${req.body.phone}</p>
             			<p><strong>Email:</strong> ${req.body.email}</p>
