@@ -31,13 +31,13 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
     }
 })
 
-ApplicationEmail.verify((error)=>{
-    if(error){
-        log(error)
-    }else{
-        log('Ready to send')
-    }
-})
+// ApplicationEmail.verify((error)=>{
+    // if(error){
+        // log(error)
+    // }else{
+        // log('Ready to send')
+    // }
+// })
 
 
 //riders route
