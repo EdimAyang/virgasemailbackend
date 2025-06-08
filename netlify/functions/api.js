@@ -10,10 +10,10 @@ import serverless from 'serverless-http';
 const app = express()
 
 app.use(cors())
-// const CORS_HEADERS = {
-//   'Access-Control-Allow-Origin': '*',
-// //   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-// };
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+};
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -40,6 +40,12 @@ ApplicationEmail.verify((error)=>{
 
 //riders route
 router.post('/riders', (req, res)=>{
+     if (req.method === 'OPTIONS') {
+        return {
+          statusCode: 200,
+          headers: CORS_HEADERS,
+        };
+    }
         const Data =  req.body;
 
         const mail = {
@@ -82,7 +88,12 @@ router.post('/riders', (req, res)=>{
 
         ApplicationEmail.sendMail(mail, (error)=>{
             if(error){
-                return res.json({status: 'Error'})
+                return res.json({
+                    status: 'Error',
+                    headers: {
+                        ...CORS_HEADERS
+                    }
+                })
             }else{
                 return res.json({status: 200})
             }
