@@ -5,26 +5,15 @@ import cors from 'cors'
 const router = express.Router()
 import 'dotenv/config'
 import serverless from 'serverless-http';
-import z from 'zod';
 import bodyParser from 'body-parser'
 
 
 const app = express()
 app.use(express.json({ limit: '10mb' }))
-// app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.json())
+
 app.use(cors({origin:'*'}))
-
-
-
-
-const RiderFormSchema = z.object({
-  email: z.string(),
-  phone: z.string(),
-  gender: z.string(),
-  DOB: z.string(),
-  fname: z.string(),
-  lname: z.string(),
-});
 
 
  const ApplicationEmail = nodemailer.createTransport({
@@ -47,13 +36,11 @@ const RiderFormSchema = z.object({
 
 
 //riders route
-router.get('/riders', (req, res)=>{
-    const Data = req.body
-    const result = RiderFormSchema.parse(Data)
-    const {fname, email, gender, lname, phone, DOB,} = result
+router.post('/riders', (req, res)=>{
+
 
         const mail = {
-            from:`${fname}`,
+            from:`${req.body.fname}`,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
@@ -74,12 +61,12 @@ router.get('/riders', (req, res)=>{
                         <h1>New Rider Application Received</h1>
                     </div>
                     <div class="content">
-                        <p><strong>First Name:</strong>${fname}</p>
-                        <p><strong>Last name:</strong> ${lname}</p>
-                        <p><strong>Phone number:</strong> ${phone}</p>
-            			<p><strong>Email:</strong> ${email}</p>
-            			 <p><strong>Gender:</strong> ${gender}</p>
-            			<p><strong>Date of birth:</strong> ${DOB}</p>
+                        <p><strong>First Name:</strong>${req.body.fname}</p>
+                        <p><strong>Last name:</strong> ${req.body.lname}</p>
+                        <p><strong>Phone number:</strong> ${req.body.phone}</p>
+            			<p><strong>Email:</strong> ${req.body.email}</p>
+            			 <p><strong>Gender:</strong> ${req.body.gender}</p>
+            			<p><strong>Date of birth:</strong> ${req.body.DOB}</p>
                     </div>
                     <div class="footer">
                         <p>This email was sent from your virgasapp riders form.</p>
@@ -97,7 +84,7 @@ router.get('/riders', (req, res)=>{
                 return res.json({status: `200`})
             }
         })
-      return  res.json("hello")
+        return res.json("hello")
 })
 
 //recruit route
