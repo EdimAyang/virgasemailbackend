@@ -74,7 +74,7 @@ router.post('/riders', (req, res)=>{
             if(error){
                 return res.json({status: 'Error'})
             }else{
-                return res.json(req.body)
+                return res.json(`${req.body}`)
             }
         })
         // return res.json("hello")
