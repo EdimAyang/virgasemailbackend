@@ -30,10 +30,12 @@ const router = express.Router()
 
 //riders route
 router.post('/riders', (req, res)=>{
-    let name = JSON.parse(req.body);
+    let Data = JSON.parse(req.body);
+
+    const {fname, lname, email, phone, DOB, gender} = Data
 
         const mail = {
-            from:name.fname,
+            from:`${fname}`,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
@@ -54,12 +56,12 @@ router.post('/riders', (req, res)=>{
                         <h1>New Rider Application Received</h1>
                     </div>
                     <div class="content">
-                        <p><strong>First Name:</strong>${name.fname}</p>
-                        <p><strong>Last name:</strong> ${req.body.lname}</p>
-                        <p><strong>Phone number:</strong> ${req.body.phone}</p>
-            			<p><strong>Email:</strong> ${req.body.email}</p>
-            			 <p><strong>Gender:</strong> ${req.body.gender}</p>
-            			<p><strong>Date of birth:</strong> ${req.body.DOB}</p>
+                        <p><strong>First Name:</strong>${fname}</p>
+                        <p><strong>Last name:</strong> ${lname}</p>
+                        <p><strong>Phone number:</strong> ${phone}</p>
+            			<p><strong>Email:</strong> ${email}</p>
+            			 <p><strong>Gender:</strong> ${gender}</p>
+            			<p><strong>Date of birth:</strong> ${DOB}</p>
                     </div>
                     <div class="footer">
                         <p>This email was sent from your virgasapp riders form.</p>
