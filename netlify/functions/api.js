@@ -25,18 +25,11 @@ const router = express.Router()
     }
 })
 
-// ApplicationEmail.verify((error)=>{
-    // if(error){
-        // log(error)
-    // }else{
-        // log('Ready to send')
-    // }
-// })
 
 
 //riders route
 router.post('/riders', (req, res)=>{
-    let name = req.body.name;
+    let name = req.body.fname;
 
         const mail = {
             from:name,
@@ -61,7 +54,7 @@ router.post('/riders', (req, res)=>{
                     </div>
                     <div class="content">
                         <p><strong>First Name:</strong>${name}</p>
-                        <p><strong>Last name:</strong> ${req.body.name2}</p>
+                        <p><strong>Last name:</strong> ${req.body.lname}</p>
                         <p><strong>Phone number:</strong> ${req.body.phone}</p>
             			<p><strong>Email:</strong> ${req.body.email}</p>
             			 <p><strong>Gender:</strong> ${req.body.gender}</p>
@@ -80,7 +73,7 @@ router.post('/riders', (req, res)=>{
             if(error){
                 return res.json({status: 'Error'})
             }else{
-                return res.json({status: `200`})
+                return res.json({status: `${req.body}`})
             }
         })
         // return res.json("hello")
