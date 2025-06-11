@@ -29,7 +29,8 @@ const router = express.Router()
 
 //riders route
 router.post('/riders', (req, res)=>{
-    let name = req.body.fname;
+    const Data = req.json();
+    let name = Data.body.fname;
 
         const mail = {
             from:name,
