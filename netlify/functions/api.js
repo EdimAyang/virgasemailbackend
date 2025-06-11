@@ -76,7 +76,7 @@ router.post('/riders', (req, res)=>{
             if(error){
                 return res.json({status: 'Error'})
             }else{
-                return res.json(`${req.body}`)
+                return res.json({status: '200'})
             }
         })
         // return res.json("hello")
@@ -86,10 +86,8 @@ router.post('/riders', (req, res)=>{
 
 router.post('/jointeam', (req, res)=>{
 
-
-        const Data2 =  req.body;
-        const result = RecruitFormSchema.parse(Data2)
-        const {role, message, projects, motivation ,cv} = result
+        const Data =  JSON.parse(req.body);
+        const {role, message, projects, motivation ,cv} = Data
 
                 
             const mail = {
