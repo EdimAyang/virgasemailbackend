@@ -30,10 +30,10 @@ const router = express.Router()
 
 //riders route
 router.post('/riders', (req, res)=>{
-    let name = req.body.fname;
+    let name = JSON.parse(req.body);
 
         const mail = {
-            from:name,
+            from:name.fname,
             to:'jacksonprince590@gmail.com',
             subject:'Rider Form',
             html:`
@@ -54,7 +54,7 @@ router.post('/riders', (req, res)=>{
                         <h1>New Rider Application Received</h1>
                     </div>
                     <div class="content">
-                        <p><strong>First Name:</strong>${name}</p>
+                        <p><strong>First Name:</strong>${name.fname}</p>
                         <p><strong>Last name:</strong> ${req.body.lname}</p>
                         <p><strong>Phone number:</strong> ${req.body.phone}</p>
             			<p><strong>Email:</strong> ${req.body.email}</p>
