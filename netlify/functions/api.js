@@ -36,7 +36,7 @@ router.post('/riders', (req, res)=>{
 
         const mail = {
             from:`${fname}`,
-            to:'jacksonprince590@gmail.com',
+            to:'mephaltihqrecruitment@gmail.com',
             subject:'Rider Form',
             html:`
             <!DOCTYPE html>
@@ -92,7 +92,7 @@ router.post('/jointeam', (req, res)=>{
                 
             const mail = {
                 from:'virgasapp',
-                to:'jacksonprince590@gmail.com',
+                to:'mephaltihqrecruitment@gmail.com',
                 subject:'Recruit Form',
                 html:`
                 <!DOCTYPE html>
