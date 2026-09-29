@@ -1,10 +1,10 @@
 // @ts-nocheck
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
-const multer = require("multer");
-const serverless = require("serverless-http");
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import nodemailer from "nodemailer";
+import multer from "multer";
+import serverless from "serverless-http";
 
 const app = express();
 
@@ -464,4 +464,5 @@ router.post(
 
 app.use("/.netlify/functions/api/", router);
 
-module.exports.handler = serverless(app);
+export const handler = serverless(app);
+
