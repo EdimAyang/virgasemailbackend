@@ -12,11 +12,34 @@ app.use(express.json({ limit: "10mb" }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-app.use(
-  cors({
-    origin: "*",
-  }),
-);
+// ======================================================
+// CORS
+// ======================================================
+
+const allowedOrigins = ["https://virgasapp.com", "https://www.virgasapp.com", "http://localhost:5173/"];
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.header("Access-Control-Allow-Origin", origin);
+  }
+
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+  );
+
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  res.header("Access-Control-Allow-Credentials", "false");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+
+  next();
+});
 
 const router = express.Router();
 
@@ -37,7 +60,7 @@ const supportUpload = multer({
   storage: multer.memoryStorage(),
 
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB 
+    fileSize: 5 * 1024 * 1024, // 5MB
   },
 
   fileFilter: (req, file, cb) => {
@@ -465,4 +488,3 @@ router.post(
 app.use("/.netlify/functions/api/", router);
 
 export const handler = serverless(app);
-
