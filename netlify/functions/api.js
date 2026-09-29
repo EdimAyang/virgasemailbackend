@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 // CORS
 // ======================================================
 
-const allowedOrigins = ["https://virgasapp.com", "https://www.virgasapp.com", "http://localhost:5173/"];
+const allowedOrigins = ["https://virgasapp.com", "https://www.virgasapp.com", "http://localhost:5173"];
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
