@@ -16,7 +16,7 @@ const router = express.Router();
 
 
 const ApplicationEmail = nodemailer.createTransport({
-  service: "gmail",
+  service: process.env.SERVICE || "gmail",
   auth: {
     user: process.env.EMAIL,
     // eslint-disable-next-line no-undef
